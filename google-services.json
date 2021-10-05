@@ -1,0 +1,76 @@
+{
+  "project_info": {
+    "project_number": "775135109477",
+    "project_id": "testfirebasse-ce5fc",
+    "storage_bucket": "testfirebasse-ce5fc.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:775135109477:android:395f0b185610ce71d8c18c",
+        "android_client_info": {
+          "package_name": "com.openclassrooms.firebaseoc"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "775135109477-nmacqbqe271hdj427l8rmnhsil49d2cm.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDYL-AcBaOmHnOWiVvPwEwD913dgH_rYGQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "775135109477-nmacqbqe271hdj427l8rmnhsil49d2cm.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:775135109477:android:30b03cf25c16f196d8c18c",
+        "android_client_info": {
+          "package_name": "fr.eseo.projetAndroid.testFirebase"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "775135109477-rltptc600u2v00ohlbk6u7dce54jf9ib.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "fr.eseo.projetAndroid.testFirebase",
+            "certificate_hash": "6b6aca48ea82000fa3de83b205fc52fa394e96e1"
+          }
+        },
+        {
+          "client_id": "775135109477-nmacqbqe271hdj427l8rmnhsil49d2cm.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDYL-AcBaOmHnOWiVvPwEwD913dgH_rYGQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "775135109477-nmacqbqe271hdj427l8rmnhsil49d2cm.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
