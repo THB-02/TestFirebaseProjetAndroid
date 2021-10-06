@@ -1,5 +1,6 @@
 package com.openclassrooms.firebaseoc.ui.chat;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -20,11 +21,7 @@ import com.openclassrooms.firebaseoc.ui.BaseActivity;
 public class MentorChatActivity extends BaseActivity<ActivityMentorChatBinding> implements MentorChatAdapter.Listener {
 
     private MentorChatAdapter mentorChatAdapter;
-    private String currentChatName;
-
-    private static final String CHAT_NAME_ANDROID = "android";
-    private static final String CHAT_NAME_BUG = "bug";
-    private static final String CHAT_NAME_FIREBASE = "firebase";
+    private String CHAT_NAME;
 
     private UserManager userManager = UserManager.getInstance();
     private ChatManager chatManager = ChatManager.getInstance();
@@ -37,16 +34,26 @@ public class MentorChatActivity extends BaseActivity<ActivityMentorChatBinding> 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        configureRecyclerView(CHAT_NAME_ANDROID);
+        if (savedInstanceState == null) {
+            Bundle extras = getIntent().getExtras();
+            if(extras == null) {
+                CHAT_NAME= null;
+            } else {
+                CHAT_NAME= extras.getString("CHAT_NAME");
+            }
+        } else {
+            CHAT_NAME= (String) savedInstanceState.getSerializable("CHAT_NAME");
+        }
+        configureRecyclerView(CHAT_NAME);
         setupListeners();
     }
 
     private void setupListeners(){
 
         // Chat buttons
-        binding.androidChatButton.setOnClickListener(view -> { this.configureRecyclerView(CHAT_NAME_ANDROID); });
-        binding.firebaseChatButton.setOnClickListener(view -> { this.configureRecyclerView(CHAT_NAME_FIREBASE); });
-        binding.bugChatButton.setOnClickListener(view -> { this.configureRecyclerView(CHAT_NAME_BUG); });
+        binding.androidChatButton.setOnClickListener(view -> { this.configureRecyclerView(CHAT_NAME); });
+        binding.firebaseChatButton.setOnClickListener(view -> { this.configureRecyclerView(CHAT_NAME); });
+        binding.bugChatButton.setOnClickListener(view -> { this.configureRecyclerView(CHAT_NAME); });
         // Send button
         binding.sendButton.setOnClickListener(view -> { sendMessage(); });
     }
@@ -54,10 +61,10 @@ public class MentorChatActivity extends BaseActivity<ActivityMentorChatBinding> 
     // Configure RecyclerView
     private void configureRecyclerView(String chatName){
         //Track current chat name
-        this.currentChatName = chatName;
+        this.CHAT_NAME = chatName;
         //Configure Adapter & RecyclerView
         this.mentorChatAdapter = new MentorChatAdapter(
-                generateOptionsForAdapter(chatManager.getAllMessageForChat(this.currentChatName)),
+                generateOptionsForAdapter(chatManager.getAllMessageForChat(this.CHAT_NAME)),
                 Glide.with(this), this);
 
         mentorChatAdapter.registerAdapterDataObserver(new RecyclerView.AdapterDataObserver() {
@@ -90,7 +97,7 @@ public class MentorChatActivity extends BaseActivity<ActivityMentorChatBinding> 
 
         if (canSendMessage){
             // Create a new message for the chat
-            chatManager.createMessageForChat(binding.chatEditText.getText().toString(), this.currentChatName);
+            chatManager.createMessageForChat(binding.chatEditText.getText().toString(), this.CHAT_NAME);
             // Reset text field
             binding.chatEditText.setText("");
         }

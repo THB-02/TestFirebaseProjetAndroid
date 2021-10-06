@@ -1,5 +1,7 @@
 package com.openclassrooms.firebaseoc.repository;
 
+import android.util.Log;
+
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
@@ -8,7 +10,7 @@ import com.openclassrooms.firebaseoc.models.Message;
 
 public final class ChatRepository {
 
-    private static final String CHAT_COLLECTION = "chats";
+    private static final String CHAT_COLLECTION = "salons";
     private static final String MESSAGE_COLLECTION = "messages";
     private static volatile ChatRepository instance;
     private UserManager userManager;
@@ -34,6 +36,9 @@ public final class ChatRepository {
     }
 
     public Query getAllMessageForChat(String chat){
+        Log.e("TEST ----", "    DBQUERY     " + this.getChatCollection()
+                .document(chat));
+
         return this.getChatCollection()
                 .document(chat)
                 .collection(MESSAGE_COLLECTION)

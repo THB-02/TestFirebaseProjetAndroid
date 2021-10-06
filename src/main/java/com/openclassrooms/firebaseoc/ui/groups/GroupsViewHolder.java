@@ -1,5 +1,7 @@
 package com.openclassrooms.firebaseoc.ui.groups;
 
+import android.content.Intent;
+import android.util.Log;
 import android.view.View;
 
 
@@ -11,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.openclassrooms.firebaseoc.R;
 import com.openclassrooms.firebaseoc.databinding.ItemGroupsBinding;
 import com.openclassrooms.firebaseoc.models.Salon;
+import com.openclassrooms.firebaseoc.ui.chat.MentorChatActivity;
 
 
 public class GroupsViewHolder extends RecyclerView.ViewHolder {
@@ -18,8 +21,6 @@ public class GroupsViewHolder extends RecyclerView.ViewHolder {
     private ItemGroupsBinding binding;
 
     private final int color;
-
-    private boolean isSender;
 
     public GroupsViewHolder(@NonNull View itemView) {
         super(itemView);
@@ -36,5 +37,17 @@ public class GroupsViewHolder extends RecyclerView.ViewHolder {
         binding.messageTextView.setText(salon.getNom());
 
     }
+
+    public void openChat(Salon salon){
+
+        itemView.setOnClickListener(view -> {
+            Log.e("TEST ----", "    SETONCLICKLISTENER     " + salon.getId());
+            Intent intent = new Intent(itemView.getContext(), MentorChatActivity.class);
+            intent.putExtra("CHAT_NAME", salon.getId());
+            itemView.getContext().startActivity(intent);
+        });
+    }
+
+
 
 }

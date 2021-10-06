@@ -30,6 +30,7 @@ public class GroupAdapter extends FirestoreRecyclerAdapter<Salon, GroupsViewHold
     protected void onBindViewHolder(@NonNull GroupsViewHolder holder, int position, @NonNull Salon model) {
         holder.itemView.invalidate();
         holder.updateWithMessage(model);
+        holder.openChat(model);
     }
 
     @Override
