@@ -26,6 +26,9 @@
         <activity android:name=".ui.groups.GroupsActivity"
             android:label="@string/toolbar_title_groups_activity"
             android:parentActivityName=".ui.MainActivity"/>
+        <activity android:name=".ui.groups.AddGroupActivity"
+            android:label="Ajouter des salons"
+            android:parentActivityName=".ui.groups.GroupsActivity"/>
     </application>
 
 </manifest>

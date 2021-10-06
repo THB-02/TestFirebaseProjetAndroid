@@ -2,7 +2,10 @@ package com.openclassrooms.firebaseoc.ui.groups;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.PopupWindow;
+import android.widget.RelativeLayout;
 
 import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -10,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.firebase.firestore.Query;
+import com.openclassrooms.firebaseoc.R;
 import com.openclassrooms.firebaseoc.databinding.ActivityGroupsBinding;
 import com.openclassrooms.firebaseoc.manager.GroupManager;
 import com.openclassrooms.firebaseoc.manager.UserManager;
@@ -27,6 +31,8 @@ public class GroupsActivity extends BaseActivity<ActivityGroupsBinding> implemen
     private UserManager userManager = UserManager.getInstance();
     private GroupManager groupManager = GroupManager.getInstance();
 
+
+
     @Override
     protected ActivityGroupsBinding getViewBinding() {
         return ActivityGroupsBinding.inflate(getLayoutInflater());
@@ -37,16 +43,18 @@ public class GroupsActivity extends BaseActivity<ActivityGroupsBinding> implemen
         super.onCreate(savedInstanceState);
         configureRecyclerView(SALON_NAME);
         setupListeners();
+
     }
 
-    private void setupListeners(){
+    private void setupListeners() {
+        binding.fab.setOnClickListener(view -> {
 
-        // Send button
-        binding.fab.setOnClickListener(view -> { startAddGroupsActivity(); });
+            startAddGroupActivity();
+        });
     }
 
     // Configure RecyclerView
-    private void configureRecyclerView(String chatName){
+    private void configureRecyclerView(String chatName) {
         //Track current chat name
         this.currentChatName = chatName;
         //Configure Adapter & RecyclerView
@@ -66,7 +74,7 @@ public class GroupsActivity extends BaseActivity<ActivityGroupsBinding> implemen
     }
 
     // Create options for RecyclerView from a Query
-    private FirestoreRecyclerOptions<Salon> generateOptionsForAdapter(Query query){
+    private FirestoreRecyclerOptions<Salon> generateOptionsForAdapter(Query query) {
         return new FirestoreRecyclerOptions.Builder<Salon>()
                 .setQuery(query, Salon.class)
                 .setLifecycleOwner(this)
@@ -78,7 +86,7 @@ public class GroupsActivity extends BaseActivity<ActivityGroupsBinding> implemen
         binding.emptyRecyclerView.setVisibility(this.groupAdapter.getItemCount() == 0 ? View.VISIBLE : View.GONE);
     }
 
-    private void startAddGroupsActivity(){
+    private void startAddGroupsActivity() {
         Intent intent = new Intent(this, MentorChatActivity.class);
         startActivity(intent);
     }
@@ -86,5 +94,10 @@ public class GroupsActivity extends BaseActivity<ActivityGroupsBinding> implemen
     @Override
     public void onPointerCaptureChanged(boolean hasCapture) {
 
+    }
+
+    private void startAddGroupActivity() {
+        Intent intent = new Intent(this, AddGroupActivity.class);
+        startActivity(intent);
     }
 }
