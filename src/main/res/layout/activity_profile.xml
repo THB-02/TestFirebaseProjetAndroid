@@ -23,9 +23,9 @@
 
             <!-- FIREBASE IMAGE -->
             <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@drawable/ic_logo_auth"/>
+                android:layout_width="93dp"
+                android:layout_height="91dp"
+                android:background="@drawable/ic_logo_fire" />
 
             <!-- PROGRESS BAR -->
             <ProgressBar

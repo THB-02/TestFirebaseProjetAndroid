@@ -29,6 +29,7 @@ public class ProfileActivity extends BaseActivity<ActivityProfileBinding> {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setupListeners();
+        updateUIWithUserData();
     }
 
     private void setupListeners(){

@@ -44,5 +44,8 @@
     <string name="popup_title_permission_files_access">Cette application a besoin de permission pour fonctionner.</string>
     <string name="toast_title_no_image_chosen">Aucune image choisie&#8230;</string>
     <string name="toolbar_title_groups_activity">Liste des groupes</string>
+    <string name="text_view_group">Ce fil de discussion ne contient pour le moment aucun salon…</string>
+    <string name="main_descryption">Ton planning poker en toute simplicité !</string>
+    <string name="app_name2">Planning Poto</string>
 
 </resources>

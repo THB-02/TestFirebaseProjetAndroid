@@ -19,7 +19,8 @@ import com.openclassrooms.firebaseoc.manager.GroupManager;
 import com.openclassrooms.firebaseoc.manager.UserManager;
 import com.openclassrooms.firebaseoc.models.Salon;
 import com.openclassrooms.firebaseoc.ui.BaseActivity;
-import com.openclassrooms.firebaseoc.ui.chat.MentorChatActivity;
+import com.openclassrooms.firebaseoc.ui.addGroup.AddGroupActivity;
+import com.openclassrooms.firebaseoc.ui.createGroup.CreateGroupActivity;
 
 public class GroupsActivity extends BaseActivity<ActivityGroupsBinding> implements GroupAdapter.Listener {
 
@@ -48,8 +49,10 @@ public class GroupsActivity extends BaseActivity<ActivityGroupsBinding> implemen
 
     private void setupListeners() {
         binding.fab.setOnClickListener(view -> {
-
             startAddGroupActivity();
+        });
+        binding.fab2.setOnClickListener(view -> {
+            startCreateGroupActivity();
         });
     }
 
@@ -86,10 +89,6 @@ public class GroupsActivity extends BaseActivity<ActivityGroupsBinding> implemen
         binding.emptyRecyclerView.setVisibility(this.groupAdapter.getItemCount() == 0 ? View.VISIBLE : View.GONE);
     }
 
-    private void startAddGroupsActivity() {
-        Intent intent = new Intent(this, MentorChatActivity.class);
-        startActivity(intent);
-    }
 
     @Override
     public void onPointerCaptureChanged(boolean hasCapture) {
@@ -98,6 +97,10 @@ public class GroupsActivity extends BaseActivity<ActivityGroupsBinding> implemen
 
     private void startAddGroupActivity() {
         Intent intent = new Intent(this, AddGroupActivity.class);
+        startActivity(intent);
+    }
+    private void startCreateGroupActivity() {
+        Intent intent = new Intent(this, CreateGroupActivity.class);
         startActivity(intent);
     }
 }

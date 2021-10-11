@@ -4,6 +4,7 @@ import android.content.Context;
 
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.Query;
 import com.openclassrooms.firebaseoc.models.User;
 import com.openclassrooms.firebaseoc.repository.UserRepository;
 
@@ -64,6 +65,9 @@ public class UserManager {
             // Once done, delete the user datas from Firestore
             userRepository.deleteUserFromFirestore();
         });
+    }
+    public Query getAllUsers(){
+        return userRepository.getAllUsers();
     }
 
 }

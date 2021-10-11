@@ -11,6 +11,7 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
 import com.openclassrooms.firebaseoc.models.User;
 
 public final class UserRepository {
@@ -114,6 +115,9 @@ public final class UserRepository {
         if(uid != null){
             this.getUsersCollection().document(uid).delete();
         }
+    }
+    public Query getAllUsers(){
+        return  FirebaseFirestore.getInstance().collection(COLLECTION_NAME);
     }
 
 }
