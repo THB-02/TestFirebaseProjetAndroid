@@ -13,6 +13,7 @@ import com.google.firebase.firestore.QuerySnapshot;
 
 public class Salon {
     private String nom;
+    private String scrum;
     private String id;
 
 
@@ -23,10 +24,18 @@ public class Salon {
         getDocumentId();
     }
 
+    public Salon(String name, String scrum) {
+
+        this.nom= name;
+        this.scrum = scrum;
+    }
+
     // --- GETTERS ---
     public String getNom() { return nom; }
     public String getId() { return id; }
-
+    public String getScrum(){
+        return scrum;
+    }
 
     // --- SETTERS ---
     public void setNom(String nom) {
@@ -34,8 +43,11 @@ public class Salon {
         getDocumentId();
     }
     public void setId(String id) { this.id = id; }
+    public void setScrum(String scrum){
+        this.scrum = scrum;
+    }
 
-    public void getDocumentId(){
+    public void getDocumentId() {
         FirebaseFirestore.getInstance().collection("salons")
                 .whereEqualTo("nom", getNom())
                 .get()

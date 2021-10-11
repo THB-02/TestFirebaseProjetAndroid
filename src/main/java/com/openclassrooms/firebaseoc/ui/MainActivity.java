@@ -50,14 +50,7 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> {
             }
         });
 
-        // Chat Button
-        binding.chatButton.setOnClickListener(view -> {
-            if(userManager.isCurrentUserLogged()){
-                startMentorChatActivity();
-            }else{
-                showSnackBar(getString(R.string.error_not_connected));
-            }
-        });
+
 
         binding.groupButton.setOnClickListener(view -> {
             if(userManager.isCurrentUserLogged()){

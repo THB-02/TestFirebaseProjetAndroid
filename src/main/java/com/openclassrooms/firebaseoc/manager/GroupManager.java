@@ -28,4 +28,8 @@ public class GroupManager {
     public Query getAllRooms(){
         return groupRepository.getAllRooms();
     }
+
+    public void createGroup(String nom){
+        groupRepository.createGroup(nom);
+    }
 }
