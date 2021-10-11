@@ -41,7 +41,6 @@ public class CreateGroupActivity extends BaseActivity<ActivityCreateGroupBinding
     private void setupListeners() {
         binding.createButton.setOnClickListener(view -> {
             createSalon();
-            showSnackBar("Le salon a été crée !");
         });
 
 
@@ -57,6 +56,10 @@ public class CreateGroupActivity extends BaseActivity<ActivityCreateGroupBinding
             groupManager.createGroup(binding.TextCreate.getText().toString());
             // Reset text field
             binding.TextCreate.setText("");
+            showSnackBar("Le salon a été crée !");
+        }
+        else{
+            showSnackBar("Vous devez dabord entrer un nomde groupe");
         }
     }
     private void startGroupActivity(){
