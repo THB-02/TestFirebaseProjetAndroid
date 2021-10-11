@@ -64,7 +64,7 @@
     <string name="text_view_group">Ce fil de discussion ne contient pour le moment aucun salon…</string>
     <string name="main_descryption">Ton planning poker en toute simplicité !</string>
     <string name="app_name2">Planning Poto</string>
-    <string name="nom_us">En attente d'US du scrum master...</string>
+    <string name="nom_us">En attente d\'US du scrum master...</string>
 
 
 </resources>
