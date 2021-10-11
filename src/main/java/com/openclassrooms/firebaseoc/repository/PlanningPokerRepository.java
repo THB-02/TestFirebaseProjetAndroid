@@ -12,10 +12,14 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.google.firebase.firestore.SetOptions;
 import com.openclassrooms.firebaseoc.manager.UserManager;
 import com.openclassrooms.firebaseoc.models.Message;
 import com.openclassrooms.firebaseoc.models.Salon;
 import com.openclassrooms.firebaseoc.models.US;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class PlanningPokerRepository {
 
@@ -59,6 +63,24 @@ public class PlanningPokerRepository {
                 .orderBy("dateCreated", Query.Direction.DESCENDING)
                 .limit(1);
     }
+
+
+    public void addNote(String username, String salon, String idUS, String note){
+        Map<String, String> uneNote = new HashMap<>();
+        uneNote.put(username, note);
+        Map<String, Map<String, String>> data = new HashMap<>();
+        data.put("notes",uneNote);
+
+        FirebaseFirestore.getInstance().collection("salons")
+                .document(salon)
+                .collection("ListeUS")
+                .document(idUS)
+                .set(data, SetOptions.merge());
+    }
+
+  //  public void finishUS(){
+
+   // }
 
 
 }

@@ -10,7 +10,8 @@ public class US {
     private String id;
     private String enonce;
     private Date dateCreated;
-    private HashMap<String, User> notes = new HashMap<String, User>();
+    private HashMap<String, String> notes = new HashMap<String, String>();
+    private boolean finished;
 
     public US(){
 
@@ -31,15 +32,17 @@ public class US {
     public String getEnonce() {
         return enonce;
     }
+    public boolean IsFinished() { return finished; }
 
     public void setEnonce(String enonce) {
         this.enonce = enonce;
     }
     public void setDateCreated(Date dateCreated) { this.dateCreated = dateCreated; }
-    public HashMap<String, User> getNotes() {
+    public HashMap<String, String> getNotes() {
         return notes;
     }
-    public void setNotes(HashMap<String, User> notes) {
+    public void setFinished(boolean finished) { this.finished = finished; }
+    public void setNotes(HashMap<String, String> notes) {
         this.notes = notes;
     }
 }

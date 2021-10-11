@@ -35,4 +35,8 @@ public class PlanningPokerManager {
         return planningPokerRepository.getLastUS(salon);
     }
 
+    public void addNote(String username, String salon, String idUS, String note){
+        planningPokerRepository.addNote(username,salon, idUS, note);
+    }
+
 }

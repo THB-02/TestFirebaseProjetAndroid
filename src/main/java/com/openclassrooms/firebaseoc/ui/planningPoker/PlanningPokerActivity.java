@@ -10,6 +10,7 @@ import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.Query;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.openclassrooms.firebaseoc.databinding.ActivityPlanningPokerBinding;
 import com.openclassrooms.firebaseoc.manager.GroupManager;
@@ -54,11 +55,57 @@ public class PlanningPokerActivity extends BaseActivity<ActivityPlanningPokerBin
         planningPokerManager.getLastUS(salon).addSnapshotListener(new EventListener<QuerySnapshot>() {
             @Override
             public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
-                if(value.toObjects(US.class).size() != 0){
-                    binding.textUs.setText(value.toObjects(US.class).get(0).getEnonce());
-                }
-                else{
-                    binding.textUs.setText("En attente d'US du scrum master...");
+                for(QueryDocumentSnapshot document : value){
+                    if(document.toObject(US.class) != null){
+                        US us = document.toObject(US.class);
+                        String idUS = document.getId();
+                        binding.textUs.setText(us.getEnonce());
+
+                        String username = userManager.getCurrentUser().getDisplayName();
+                        binding.button0.setOnClickListener(view -> {
+                            planningPokerManager.addNote(username, salon, idUS, "0");
+                        });
+                        binding.button05.setOnClickListener(view -> {
+                            planningPokerManager.addNote(username, salon, idUS, "0.5");
+                        });
+                        binding.button1.setOnClickListener(view -> {
+                            planningPokerManager.addNote(username, salon, idUS, "1");
+                        });
+                        binding.button2.setOnClickListener(view -> {
+                            planningPokerManager.addNote(username, salon, idUS, "2");
+                        });
+                        binding.button3.setOnClickListener(view -> {
+                            planningPokerManager.addNote(username, salon, idUS, "3");
+                        });
+                        binding.button5.setOnClickListener(view -> {
+                            planningPokerManager.addNote(username, salon, idUS, "5");
+                        });
+                        binding.button8.setOnClickListener(view -> {
+                            planningPokerManager.addNote(username, salon, idUS, "8");
+                        });
+                        binding.button13.setOnClickListener(view -> {
+                            planningPokerManager.addNote(username, salon, idUS, "13");
+                        });
+                        binding.button20.setOnClickListener(view -> {
+                            planningPokerManager.addNote(username, salon, idUS, "20");
+                        });
+                        binding.button40.setOnClickListener(view -> {
+                            planningPokerManager.addNote(username, salon, idUS, "40");
+                        });
+                        binding.button100.setOnClickListener(view -> {
+                            planningPokerManager.addNote(username, salon, idUS, "100");
+                        });
+                        binding.buttonInterrogation.setOnClickListener(view -> {
+                            planningPokerManager.addNote(username, salon, idUS, "?");
+                        });
+
+                        binding.btnUsSuivante.setOnClickListener(view -> {
+
+                        });
+                    }
+                    else{
+                        binding.textUs.setText("En attente d'US du scrum master...");
+                    }
                 }
             }
         });
