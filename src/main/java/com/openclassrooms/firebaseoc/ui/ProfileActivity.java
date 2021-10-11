@@ -12,7 +12,6 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.google.firebase.auth.FirebaseUser;
 import com.openclassrooms.firebaseoc.R;
-import com.openclassrooms.firebaseoc.databinding.ActivityMainBinding;
 import com.openclassrooms.firebaseoc.databinding.ActivityProfileBinding;
 import com.openclassrooms.firebaseoc.manager.UserManager;
 
