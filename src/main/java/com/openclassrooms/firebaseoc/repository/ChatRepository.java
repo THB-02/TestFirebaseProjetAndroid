@@ -36,9 +36,6 @@ public final class ChatRepository {
     }
 
     public Query getAllMessageForChat(String chat){
-        Log.e("TEST ----", "    DBQUERY     " + this.getChatCollection()
-                .document(chat));
-
         return this.getChatCollection()
                 .document(chat)
                 .collection(MESSAGE_COLLECTION)

@@ -44,5 +44,20 @@
     <string name="popup_title_permission_files_access">Cette application a besoin de permission pour fonctionner.</string>
     <string name="toast_title_no_image_chosen">Aucune image choisie&#8230;</string>
     <string name="toolbar_title_groups_activity">Liste des groupes</string>
+    <string name="toolbar_title_planning_poker">Planning Poker</string>
+
+    <string name="btn0">0</string>
+    <string name="btn05">0.5</string>
+    <string name="btn1">1</string>
+    <string name="btn2">2</string>
+    <string name="btn3">3</string>
+    <string name="btn5">5</string>
+    <string name="btn8">8</string>
+    <string name="btn13">13</string>
+    <string name="btn20">20</string>
+    <string name="btn40">40</string>
+    <string name="btn100">100</string>
+    <string name="btnInterrogation">\?</string>
+    <string name="btnUsSuivante">US Suivante</string>
 
 </resources>

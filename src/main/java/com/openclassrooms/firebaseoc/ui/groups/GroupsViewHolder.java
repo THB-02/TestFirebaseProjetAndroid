@@ -13,7 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.openclassrooms.firebaseoc.R;
 import com.openclassrooms.firebaseoc.databinding.ItemGroupsBinding;
 import com.openclassrooms.firebaseoc.models.Salon;
-import com.openclassrooms.firebaseoc.ui.chat.MentorChatActivity;
+import com.openclassrooms.firebaseoc.ui.planningPoker.PlanningPokerActivity;
 
 
 public class GroupsViewHolder extends RecyclerView.ViewHolder {
@@ -39,11 +39,9 @@ public class GroupsViewHolder extends RecyclerView.ViewHolder {
     }
 
     public void openChat(Salon salon){
-
         itemView.setOnClickListener(view -> {
-            Log.e("TEST ----", "    SETONCLICKLISTENER     " + salon.getId());
-            Intent intent = new Intent(itemView.getContext(), MentorChatActivity.class);
-            intent.putExtra("CHAT_NAME", salon.getId());
+            Intent intent = new Intent(itemView.getContext(), PlanningPokerActivity.class);
+            intent.putExtra("salon", salon.getId());
             itemView.getContext().startActivity(intent);
         });
     }

@@ -44,7 +44,6 @@ public class Salon {
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         for (QueryDocumentSnapshot document : task.getResult()) {
                             setId(document.getId());
-                            Log.e("TEST ----", document.getId() + " => " + getId());
                         }
                     }
                 });

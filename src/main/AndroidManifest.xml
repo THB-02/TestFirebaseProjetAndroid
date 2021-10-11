@@ -26,6 +26,10 @@
         <activity android:name=".ui.groups.GroupsActivity"
             android:label="@string/toolbar_title_groups_activity"
             android:parentActivityName=".ui.MainActivity"/>
+        <activity android:name=".ui.planningPoker.PlanningPokerActivity"
+            android:label="@string/toolbar_title_planning_poker"
+            android:screenOrientation="portrait"
+            android:parentActivityName=".ui.groups.GroupsActivity"/>
     </application>
 
 </manifest>
