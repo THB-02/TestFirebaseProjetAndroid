@@ -40,7 +40,7 @@ public class ProfileActivity extends BaseActivity<ActivityProfileBinding> {
         });
 
         // Update button
-        binding.updateButton.setOnClickListener(view -> {
+        binding.addButton.setOnClickListener(view -> {
             binding.progressBar.setVisibility(View.VISIBLE);
             userManager.updateUsername(binding.usernameEditText.getText().toString())
                     .addOnSuccessListener(aVoid -> {

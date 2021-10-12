@@ -41,9 +41,8 @@ public class CreateGroupActivity extends BaseActivity<ActivityCreateGroupBinding
     private void setupListeners() {
         binding.createButton.setOnClickListener(view -> {
             createSalon();
+            this.finish();
         });
-
-
 
     }
 
@@ -62,10 +61,7 @@ public class CreateGroupActivity extends BaseActivity<ActivityCreateGroupBinding
             showSnackBar("Vous devez dabord entrer un nomde groupe");
         }
     }
-    private void startGroupActivity(){
-        Intent intent = new Intent(this, GroupsActivity.class);
-        startActivity(intent);
-    }
+
 
     // Show Snack Bar with a message
     private void showSnackBar( String message){

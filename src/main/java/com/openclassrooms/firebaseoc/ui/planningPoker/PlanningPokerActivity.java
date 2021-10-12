@@ -1,22 +1,30 @@
 package com.openclassrooms.firebaseoc.ui.planningPoker;
 
+import android.content.ClipData;
+import android.content.ClipboardManager;
+import android.content.Context;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.google.firebase.firestore.EventListener;
-import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
-import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.openclassrooms.firebaseoc.R;
 import com.openclassrooms.firebaseoc.databinding.ActivityPlanningPokerBinding;
 import com.openclassrooms.firebaseoc.manager.GroupManager;
 import com.openclassrooms.firebaseoc.manager.PlanningPokerManager;
 import com.openclassrooms.firebaseoc.manager.UserManager;
-import com.openclassrooms.firebaseoc.models.Message;
+import com.openclassrooms.firebaseoc.models.Salon;
 import com.openclassrooms.firebaseoc.models.US;
 import com.openclassrooms.firebaseoc.ui.BaseActivity;
 
@@ -24,7 +32,6 @@ import com.openclassrooms.firebaseoc.ui.BaseActivity;
 public class PlanningPokerActivity extends BaseActivity<ActivityPlanningPokerBinding> {
 
     private String salon;
-
     private UserManager userManager = UserManager.getInstance();
     private PlanningPokerManager planningPokerManager = PlanningPokerManager.getInstance();
     private GroupManager groupManager = GroupManager.getInstance();
@@ -48,6 +55,25 @@ public class PlanningPokerActivity extends BaseActivity<ActivityPlanningPokerBin
             salon= (String) savedInstanceState.getSerializable("salon");
         }
         setupListeners();
+    }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu){
+        getMenuInflater().inflate(R.menu.menu_us,menu);
+        return true;
+    }
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item){
+
+        if(item.getItemId()==R.id.copy_menu){
+                    ClipboardManager clipboardManager = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
+                    ClipData clip = ClipData.newPlainText("idRoom",salon);
+                    clipboardManager.setPrimaryClip(clip);
+                    Toast.makeText(PlanningPokerActivity.this, "Clé du salon copié !", Toast.LENGTH_SHORT).show();
+
+
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     private void setupListeners(){
@@ -113,6 +139,8 @@ public class PlanningPokerActivity extends BaseActivity<ActivityPlanningPokerBin
         binding.sendButton.setOnClickListener(view -> {
             sendUS();
         });
+
+
     }
 
     private void sendUS(){

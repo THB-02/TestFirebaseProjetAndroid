@@ -1,9 +1,11 @@
 package com.openclassrooms.firebaseoc.ui;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import android.content.Intent;
 import android.os.Bundle;
+
 
 import com.firebase.ui.auth.AuthUI;
 import com.firebase.ui.auth.ErrorCodes;
@@ -39,6 +41,7 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> {
         super.onCreate(savedInstanceState);
         setupListeners();
     }
+
 
     private void setupListeners(){
         // Login/Profile Button
@@ -137,6 +140,7 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> {
     private void updateLoginButton(){
         binding.loginButton.setText(userManager.isCurrentUserLogged() ? getString(R.string.button_login_text_logged) : getString(R.string.button_login_text_not_logged));
     }
+
 
 }
 

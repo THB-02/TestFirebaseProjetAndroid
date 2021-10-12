@@ -10,6 +10,10 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.google.firebase.firestore.SetOptions;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class Salon {
     private String nom;
@@ -59,5 +63,15 @@ public class Salon {
                         }
                     }
                 });
+    }
+    public void addMembers(User user, String salon){
+        Map<String, String> member = new HashMap<>();
+        member.put(user.getUsername(), user.getUid().toString());
+        Map<String, Map<String, String>> data = new HashMap<>();
+        data.put("members",member);
+
+        FirebaseFirestore.getInstance().collection("salons")
+                .document(salon)
+                .set(data, SetOptions.merge());
     }
 }

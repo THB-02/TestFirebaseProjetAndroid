@@ -65,6 +65,9 @@
     <string name="main_descryption">Ton planning poker en toute simplicité !</string>
     <string name="app_name2">Planning Poto</string>
     <string name="nom_us">En attente d\'US du scrum master...</string>
+    <string name="text_copy_button">Clé du salon</string>
+    <string name="Text_add_group">Ajouter un salon</string>
+    <string name="text_add_button">Ajouter</string>
 
 
 </resources>

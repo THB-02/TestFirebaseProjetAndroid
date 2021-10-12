@@ -27,7 +27,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:fontFamily="sans-serif-black"
-        android:text="Ajouter un salon"
+        android:text="@string/Text_add_group"
         android:textColor="#000000"
         android:textSize="34sp"
         android:textStyle="bold"
@@ -70,7 +70,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView" />
 
     <Button
-        android:id="@+id/updateButton"
+        android:id="@+id/addButton"
         style="?android:attr/borderlessButtonStyle"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
@@ -79,12 +79,20 @@
         android:layout_marginBottom="24dp"
         android:background="@drawable/button_radius_primary_color"
         android:padding="@dimen/default_margin"
-        android:text="Ajouter"
+        android:text="@string/text_add_button"
         android:textColor="#fff"
         android:textSize="@dimen/default_text_size"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
+    <LinearLayout
+        android:id="@+id/forSnackBar"
+        android:layout_width="410dp"
+        android:layout_height="147dp"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textInputEditText"></LinearLayout>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
