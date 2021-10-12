@@ -39,4 +39,8 @@ public class PlanningPokerManager {
         planningPokerRepository.addNote(username,salon, idUS, note);
     }
 
+    public void finishUS(String salon, String idUS, boolean finished){
+        planningPokerRepository.finishUS(salon, idUS, finished);
+    }
+
 }

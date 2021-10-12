@@ -14,7 +14,7 @@ public class US {
     private boolean finished;
 
     public US(){
-
+        this.finished = false;
     }
 
     public US(String enonce){
@@ -32,7 +32,7 @@ public class US {
     public String getEnonce() {
         return enonce;
     }
-    public boolean IsFinished() { return finished; }
+    public boolean isFinished() { return finished; }
 
     public void setEnonce(String enonce) {
         this.enonce = enonce;
