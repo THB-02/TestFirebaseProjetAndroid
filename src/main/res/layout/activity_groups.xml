@@ -17,6 +17,8 @@
         android:id="@+id/recyclerViewContainer"
         android:layout_width="match_parent"
         android:layout_height="606dp"
+        android:layout_above="@+id/fab2"
+        android:layout_marginBottom="30dp"
         android:orientation="vertical">
 
         <!-- MESSAGE RECYCLER VIEW EMPTY -->

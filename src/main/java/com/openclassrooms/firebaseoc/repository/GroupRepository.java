@@ -39,7 +39,7 @@ public CollectionReference getGroupCollection(){
 }
 
 public Query getAllRooms(){
-    return  FirebaseFirestore.getInstance().collection("salons");
+    return  FirebaseFirestore.getInstance().collection("salons").orderBy("dateCreated", Query.Direction.DESCENDING);
 }
 
 // Create User in Firestore

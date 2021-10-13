@@ -10,11 +10,15 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.google.firebase.firestore.ServerTimestamp;
+
+import java.util.Date;
 
 public class Salon {
     private String nom;
     private String scrum;
     private String id;
+    private Date dateCreated;
 
 
     public Salon() { }
@@ -30,12 +34,15 @@ public class Salon {
         this.scrum = scrum;
     }
 
+
     // --- GETTERS ---
     public String getNom() { return nom; }
     public String getId() { return id; }
     public String getScrum(){
         return scrum;
     }
+    @ServerTimestamp
+    public Date getDateCreated() { return dateCreated; }
 
     // --- SETTERS ---
     public void setNom(String nom) {
@@ -46,6 +53,7 @@ public class Salon {
     public void setScrum(String scrum){
         this.scrum = scrum;
     }
+    public void setDateCreated(Date dateCreated) { this.dateCreated = dateCreated; }
 
     public void getDocumentId() {
         FirebaseFirestore.getInstance().collection("salons")
