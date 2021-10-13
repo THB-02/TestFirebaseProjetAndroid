@@ -87,24 +87,26 @@ public class PlanningPokerActivity extends BaseActivity<ActivityPlanningPokerBin
 
         String userId = userManager.getCurrentUser().getUid();
         String username = userManager.getCurrentUser().getDisplayName();
-
+        Log.e("test","0");
         planningPokerManager.getLastUS(salon).addSnapshotListener(new EventListener<QuerySnapshot>() {
             @Override
             public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
-                for(QueryDocumentSnapshot document : value){
-                    if(document.toObject(US.class) != null){
+                Log.e("test",String.valueOf(value.size()));
+                if(value.size() > 0){
+                    for(QueryDocumentSnapshot document : value) {
+                        Log.e("test", "2");
+                        Log.e("test", "3");
                         US us = document.toObject(US.class);
                         String idUS = document.getId();
                         binding.textUs.setText(us.getEnonce());
 
-                        if (us.getNotes().containsKey(username)){
+                        if (us.getNotes().containsKey(username)) {
                             binding.btnNotes.setVisibility(View.GONE);
                             binding.btnModifReponse.setVisibility(View.VISIBLE);
-                            if(scrum.equals(userId)){
+                            if (scrum.equals(userId)) {
                                 binding.btnUsSuivante.setVisibility(View.VISIBLE);
                             }
-                        }
-                        else{
+                        } else {
                             binding.btnModifReponse.setVisibility(View.GONE);
                             binding.btnNotes.setVisibility(View.VISIBLE);
                         }
@@ -119,7 +121,7 @@ public class PlanningPokerActivity extends BaseActivity<ActivityPlanningPokerBin
                             binding.btnNotes.setVisibility(View.GONE);
                             binding.btnModifReponse.setVisibility(View.VISIBLE);
                             planningPokerManager.addNote(username, salon, idUS, "0");
-                            if(scrum.equals(userId)){
+                            if (scrum.equals(userId)) {
                                 binding.btnUsSuivante.setVisibility(View.VISIBLE);
                             }
                         });
@@ -127,7 +129,7 @@ public class PlanningPokerActivity extends BaseActivity<ActivityPlanningPokerBin
                             binding.btnNotes.setVisibility(View.GONE);
                             binding.btnModifReponse.setVisibility(View.VISIBLE);
                             planningPokerManager.addNote(username, salon, idUS, "0.5");
-                            if(scrum.equals(userId)){
+                            if (scrum.equals(userId)) {
                                 binding.btnUsSuivante.setVisibility(View.VISIBLE);
                             }
                         });
@@ -135,7 +137,7 @@ public class PlanningPokerActivity extends BaseActivity<ActivityPlanningPokerBin
                             binding.btnNotes.setVisibility(View.GONE);
                             binding.btnModifReponse.setVisibility(View.VISIBLE);
                             planningPokerManager.addNote(username, salon, idUS, "1");
-                            if(scrum.equals(userId)){
+                            if (scrum.equals(userId)) {
                                 binding.btnUsSuivante.setVisibility(View.VISIBLE);
                             }
                         });
@@ -143,7 +145,7 @@ public class PlanningPokerActivity extends BaseActivity<ActivityPlanningPokerBin
                             binding.btnNotes.setVisibility(View.GONE);
                             binding.btnModifReponse.setVisibility(View.VISIBLE);
                             planningPokerManager.addNote(username, salon, idUS, "2");
-                            if(scrum.equals(userId)){
+                            if (scrum.equals(userId)) {
                                 binding.btnUsSuivante.setVisibility(View.VISIBLE);
                             }
                         });
@@ -151,7 +153,7 @@ public class PlanningPokerActivity extends BaseActivity<ActivityPlanningPokerBin
                             binding.btnNotes.setVisibility(View.GONE);
                             binding.btnModifReponse.setVisibility(View.VISIBLE);
                             planningPokerManager.addNote(username, salon, idUS, "3");
-                            if(scrum.equals(userId)){
+                            if (scrum.equals(userId)) {
                                 binding.btnUsSuivante.setVisibility(View.VISIBLE);
                             }
                         });
@@ -159,7 +161,7 @@ public class PlanningPokerActivity extends BaseActivity<ActivityPlanningPokerBin
                             binding.btnNotes.setVisibility(View.GONE);
                             binding.btnModifReponse.setVisibility(View.VISIBLE);
                             planningPokerManager.addNote(username, salon, idUS, "5");
-                            if(scrum.equals(userId)){
+                            if (scrum.equals(userId)) {
                                 binding.btnUsSuivante.setVisibility(View.VISIBLE);
                             }
                         });
@@ -167,7 +169,7 @@ public class PlanningPokerActivity extends BaseActivity<ActivityPlanningPokerBin
                             binding.btnNotes.setVisibility(View.GONE);
                             binding.btnModifReponse.setVisibility(View.VISIBLE);
                             planningPokerManager.addNote(username, salon, idUS, "8");
-                            if(scrum.equals(userId)){
+                            if (scrum.equals(userId)) {
                                 binding.btnUsSuivante.setVisibility(View.VISIBLE);
                             }
                         });
@@ -175,7 +177,7 @@ public class PlanningPokerActivity extends BaseActivity<ActivityPlanningPokerBin
                             binding.btnNotes.setVisibility(View.GONE);
                             binding.btnModifReponse.setVisibility(View.VISIBLE);
                             planningPokerManager.addNote(username, salon, idUS, "13");
-                            if(scrum.equals(userId)){
+                            if (scrum.equals(userId)) {
                                 binding.btnUsSuivante.setVisibility(View.VISIBLE);
                             }
                         });
@@ -183,7 +185,7 @@ public class PlanningPokerActivity extends BaseActivity<ActivityPlanningPokerBin
                             binding.btnNotes.setVisibility(View.GONE);
                             binding.btnModifReponse.setVisibility(View.VISIBLE);
                             planningPokerManager.addNote(username, salon, idUS, "20");
-                            if(scrum.equals(userId)){
+                            if (scrum.equals(userId)) {
                                 binding.btnUsSuivante.setVisibility(View.VISIBLE);
                             }
                         });
@@ -191,7 +193,7 @@ public class PlanningPokerActivity extends BaseActivity<ActivityPlanningPokerBin
                             binding.btnNotes.setVisibility(View.GONE);
                             binding.btnModifReponse.setVisibility(View.VISIBLE);
                             planningPokerManager.addNote(username, salon, idUS, "40");
-                            if(scrum.equals(userId)){
+                            if (scrum.equals(userId)) {
                                 binding.btnUsSuivante.setVisibility(View.VISIBLE);
                             }
                         });
@@ -199,7 +201,7 @@ public class PlanningPokerActivity extends BaseActivity<ActivityPlanningPokerBin
                             binding.btnNotes.setVisibility(View.GONE);
                             binding.btnModifReponse.setVisibility(View.VISIBLE);
                             planningPokerManager.addNote(username, salon, idUS, "100");
-                            if(scrum.equals(userId)){
+                            if (scrum.equals(userId)) {
                                 binding.btnUsSuivante.setVisibility(View.VISIBLE);
                             }
                         });
@@ -207,7 +209,7 @@ public class PlanningPokerActivity extends BaseActivity<ActivityPlanningPokerBin
                             binding.btnNotes.setVisibility(View.GONE);
                             binding.btnModifReponse.setVisibility(View.VISIBLE);
                             planningPokerManager.addNote(username, salon, idUS, "?");
-                            if(scrum.equals(userId)){
+                            if (scrum.equals(userId)) {
                                 binding.btnUsSuivante.setVisibility(View.VISIBLE);
                             }
                         });
@@ -218,24 +220,27 @@ public class PlanningPokerActivity extends BaseActivity<ActivityPlanningPokerBin
 
                         });
 
-                        if(us.isFinished()){
+                        if (us.isFinished()) {
                             binding.btnNotes.setVisibility(View.GONE);
                             binding.btnModifReponse.setVisibility(View.GONE);
                             binding.btnUsSuivante.setVisibility(View.GONE);
                             binding.textUs.setText("Le scrum master a fermé les votes.\nEn attente d'une nouvelle US..");
-                        }
-                        else{
+                        } else {
                             binding.messageContainer.setVisibility(View.GONE);
                         }
                     }
                 }
+                else{
+                    binding.btnNotes.setVisibility(View.GONE);
+                    binding.btnModifReponse.setVisibility(View.GONE);
+                    binding.btnUsSuivante.setVisibility(View.GONE);
+                }
             }
         });
 
-
         if(scrum.equals(userId)){
-            binding.btnUsSuivante.setVisibility(View.VISIBLE);
             binding.messageContainer.setVisibility(View.VISIBLE);
+            binding.btnUsSuivante.setVisibility(View.VISIBLE);
         }
         else{
             binding.btnUsSuivante.setVisibility(View.GONE);
