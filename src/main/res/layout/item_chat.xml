@@ -79,9 +79,10 @@
                 android:id="@+id/messageTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:background="#E6E6E6"
+                android:padding="@dimen/default_margin"
                 android:textIsSelectable="true"
                 android:textSize="@dimen/default_text_size"
-                android:padding="@dimen/default_margin"
                 tools:text="Text example" />
 
         </LinearLayout>

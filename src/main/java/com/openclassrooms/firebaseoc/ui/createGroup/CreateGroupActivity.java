@@ -15,6 +15,7 @@ import com.openclassrooms.firebaseoc.manager.ChatManager;
 import com.openclassrooms.firebaseoc.manager.GroupManager;
 import com.openclassrooms.firebaseoc.manager.UserManager;
 
+import com.openclassrooms.firebaseoc.models.User;
 import com.openclassrooms.firebaseoc.ui.BaseActivity;
 import com.openclassrooms.firebaseoc.ui.groups.GroupsActivity;
 

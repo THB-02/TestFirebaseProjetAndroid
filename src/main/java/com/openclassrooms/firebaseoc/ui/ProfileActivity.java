@@ -34,18 +34,10 @@ public class ProfileActivity extends BaseActivity<ActivityProfileBinding> {
 
     private void setupListeners(){
 
-        // Mentor Checkbox
-        binding.isMentorCheckBox.setOnCheckedChangeListener((compoundButton, checked) -> {
-            userManager.updateIsMentor(checked);
-        });
-
         // Update button
         binding.addButton.setOnClickListener(view -> {
-            binding.progressBar.setVisibility(View.VISIBLE);
-            userManager.updateUsername(binding.usernameEditText.getText().toString())
-                    .addOnSuccessListener(aVoid -> {
-                        binding.progressBar.setVisibility(View.INVISIBLE);
-                    });
+            userManager.updateUsername(binding.usernameEditText.getText().toString());
+
         });
 
 
@@ -109,7 +101,6 @@ public class ProfileActivity extends BaseActivity<ActivityProfileBinding> {
         userManager.getUserData().addOnSuccessListener(user -> {
             // Set the data with the user information
             String username = TextUtils.isEmpty(user.getUsername()) ? getString(R.string.info_no_username_found) : user.getUsername();
-            binding.isMentorCheckBox.setChecked(user.getIsMentor());
             binding.usernameEditText.setText(username);
         });
     }

@@ -13,27 +13,33 @@
     <!-- MESSAGE CONTAINER -->
     <LinearLayout
         android:id="@+id/messageTextContainer"
-        android:layout_width="0dp"
-        android:layout_height="72dp"
-        android:layout_gravity="end"
-        android:background="@drawable/ic_chat_message_background"
-        android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <!-- TEXT MESSAGE -->
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:background="@drawable/ic_item_group"
+        android:orientation="vertical"
+        tools:layout_editor_absoluteX="178dp">
 
         <TextView
             android:id="@+id/messageTextView"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_width="129dp"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
-
             android:padding="8dp"
             android:text="TextView"
-            android:textColor="#5D4037" />
+            android:textAlignment="viewStart"
+            android:textAllCaps="false"
+            android:textColor="#FFFFFF"
+            android:textSize="20sp"
+            android:textStyle="bold" />
 
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="366dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="right"
+            android:text="TextView" />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

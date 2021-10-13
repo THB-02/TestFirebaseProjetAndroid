@@ -6,10 +6,17 @@ import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
+import com.google.firebase.firestore.SetOptions;
 import com.openclassrooms.firebaseoc.manager.UserManager;
 import com.openclassrooms.firebaseoc.models.Message;
 import com.openclassrooms.firebaseoc.models.Salon;
 import com.openclassrooms.firebaseoc.models.User;
+
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 
 public class GroupRepository {
 
@@ -42,15 +49,33 @@ public Query getAllRooms(){
     return  FirebaseFirestore.getInstance().collection("salons");
 }
 
+/*public Query getMyAllRooms(String uid){
+    return  FirebaseFirestore
+            .getInstance()
+            .collection("salons")
+            .whereArrayContains(String.valueOf(Arrays.asList("members","scrum")), uid);
+    }*/
+
 // Create User in Firestore
 public void createGroup(String nom) {
     userManager.getUserData().addOnSuccessListener(user -> {
         // Create the Message object
+        /*Map<String, String> member = new HashMap<>();
+        member.put(user.getUsername(), user.getUid().toString());
+        HashMap<String, Map<String, String>> data = new HashMap<>();
+        data.put("members",member);
+*/
         String uid = user.getUid();
-        Salon salon = new Salon(nom,uid);
+        Salon salon = new Salon(nom, uid);
 
         this.getGroupCollection().add(salon);
+
+
     });
 
     }
+
+
+
+
 }

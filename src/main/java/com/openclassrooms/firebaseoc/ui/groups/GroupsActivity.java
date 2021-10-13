@@ -51,7 +51,7 @@ public class GroupsActivity extends BaseActivity<ActivityGroupsBinding> implemen
         binding.fab.setOnClickListener(view -> {
             startAddGroupActivity();
         });
-        binding.fab2.setOnClickListener(view -> {
+        binding.fab4.setOnClickListener(view -> {
             startCreateGroupActivity();
         });
     }
