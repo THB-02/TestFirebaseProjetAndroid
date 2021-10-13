@@ -1,21 +1,9 @@
 package com.openclassrooms.firebaseoc.repository;
 
-import android.util.Log;
-
-import androidx.annotation.NonNull;
-
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
-import com.google.firebase.firestore.QueryDocumentSnapshot;
-import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.firestore.SetOptions;
 import com.openclassrooms.firebaseoc.manager.UserManager;
-import com.openclassrooms.firebaseoc.models.Message;
-import com.openclassrooms.firebaseoc.models.Salon;
 import com.openclassrooms.firebaseoc.models.US;
 
 import java.util.HashMap;
@@ -78,9 +66,16 @@ public class PlanningPokerRepository {
                 .set(data, SetOptions.merge());
     }
 
-  //  public void finishUS(){
+    public void finishUS(String salon, String idUS, boolean finished){
+        Map<String, Boolean> data = new HashMap<>();
+        data.put("finished",finished);
 
-   // }
+        FirebaseFirestore.getInstance().collection("salons")
+                .document(salon)
+                .collection("ListeUS")
+                .document(idUS)
+                .set(data,SetOptions.merge());
+   }
 
 
 }

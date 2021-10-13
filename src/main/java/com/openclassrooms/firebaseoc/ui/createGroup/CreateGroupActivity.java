@@ -45,6 +45,7 @@ public class CreateGroupActivity extends BaseActivity<ActivityCreateGroupBinding
             this.finish();
         });
 
+
     }
 
     public void createSalon() {

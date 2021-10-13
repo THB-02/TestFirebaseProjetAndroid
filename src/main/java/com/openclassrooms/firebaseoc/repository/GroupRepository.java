@@ -46,7 +46,7 @@ public CollectionReference getGroupCollection(){
 }
 
 public Query getAllRooms(){
-    return  FirebaseFirestore.getInstance().collection("salons");
+    return  FirebaseFirestore.getInstance().collection("salons").orderBy("dateCreated", Query.Direction.DESCENDING);
 }
 
 /*public Query getMyAllRooms(String uid){

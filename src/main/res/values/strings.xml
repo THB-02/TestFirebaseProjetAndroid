@@ -70,5 +70,7 @@
     <string name="text_add_button">Ajouter</string>
     <string name="change_name">Changer de nom</string>
 
+    <string name="btnModifReponse">Modifier ma réponse</string>
+
 
 </resources>

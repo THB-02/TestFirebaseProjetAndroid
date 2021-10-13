@@ -42,6 +42,7 @@ public class GroupsViewHolder extends RecyclerView.ViewHolder {
         itemView.setOnClickListener(view -> {
             Intent intent = new Intent(itemView.getContext(), PlanningPokerActivity.class);
             intent.putExtra("salon", salon.getId());
+            intent.putExtra("scrum", salon.getScrum());
             itemView.getContext().startActivity(intent);
         });
     }

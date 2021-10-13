@@ -65,13 +65,6 @@ public class GroupsActivity extends BaseActivity<ActivityGroupsBinding> implemen
                 generateOptionsForAdapter(groupManager.getAllRooms()),
                 this);
 
-        groupAdapter.registerAdapterDataObserver(new RecyclerView.AdapterDataObserver() {
-            @Override
-            public void onItemRangeInserted(int positionStart, int itemCount) {
-                binding.chatRecyclerView.smoothScrollToPosition(groupAdapter.getItemCount()); // Scroll to bottom on new messages
-            }
-        });
-
         binding.chatRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         binding.chatRecyclerView.setAdapter(this.groupAdapter);
     }

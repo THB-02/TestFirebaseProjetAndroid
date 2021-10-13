@@ -1,7 +1,6 @@
 package com.openclassrooms.firebaseoc.models;
 
 
-import android.util.Log;
 
 import androidx.annotation.NonNull;
 
@@ -11,7 +10,8 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.firestore.SetOptions;
-
+import com.google.firebase.firestore.ServerTimestamp;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -19,6 +19,7 @@ public class Salon {
     private String nom;
     private String scrum;
     private String id;
+    private Date dateCreated;
 
 
     public Salon() { }
@@ -34,6 +35,7 @@ public class Salon {
         this.scrum = scrum;
     }
 
+
     // --- GETTERS ---
     public String getNom() { return nom; }
     public String getId() { return id; }
@@ -41,15 +43,20 @@ public class Salon {
         return scrum;
     }
 
+    @ServerTimestamp
+    public Date getDateCreated() { return dateCreated; }
+
     // --- SETTERS ---
     public void setNom(String nom) {
         this.nom = nom;
         getDocumentId();
     }
+    
     public void setId(String id) { this.id = id; }
     public void setScrum(String scrum){
         this.scrum = scrum;
     }
+    public void setDateCreated(Date dateCreated) { this.dateCreated = dateCreated; }
 
     public void getDocumentId() {
         FirebaseFirestore.getInstance().collection("salons")

@@ -29,7 +29,8 @@
             android:screenOrientation="portrait"/>
         <activity android:name=".ui.planningPoker.PlanningPokerActivity"
             android:label="@string/toolbar_title_planning_poker"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait"
+            android:parentActivityName=".ui.groups.GroupsActivity"/>/>
         <activity android:name=".ui.addGroup.AddGroupActivity"
             android:label="Ajouter des salons"
             android:parentActivityName=".ui.groups.GroupsActivity"
