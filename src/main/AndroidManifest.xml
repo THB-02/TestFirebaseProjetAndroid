@@ -25,16 +25,19 @@
             android:parentActivityName=".ui.MainActivity"/>
         <activity android:name=".ui.groups.GroupsActivity"
             android:label="@string/toolbar_title_groups_activity"
-            android:parentActivityName=".ui.MainActivity"/>
+            android:parentActivityName=".ui.MainActivity"
+            android:screenOrientation="portrait"/>
         <activity android:name=".ui.planningPoker.PlanningPokerActivity"
             android:label="@string/toolbar_title_planning_poker"
             android:screenOrientation="portrait"/>
         <activity android:name=".ui.addGroup.AddGroupActivity"
             android:label="Ajouter des salons"
-            android:parentActivityName=".ui.groups.GroupsActivity"/>
+            android:parentActivityName=".ui.groups.GroupsActivity"
+            android:screenOrientation="portrait"/>
         <activity android:name=".ui.createGroup.CreateGroupActivity"
             android:label="Créer un salon"
-            android:parentActivityName=".ui.groups.GroupsActivity"/>
+            android:parentActivityName=".ui.groups.GroupsActivity"
+            android:screenOrientation="portrait"/>
     </application>
 
 </manifest>
