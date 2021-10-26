@@ -1,7 +1,6 @@
 package com.openclassrooms.firebaseoc.ui.groups;
 
 import android.content.Intent;
-import android.util.Log;
 import android.view.View;
 
 
@@ -41,7 +40,7 @@ public class GroupsViewHolder extends RecyclerView.ViewHolder {
     public void openChat(Salon salon){
         itemView.setOnClickListener(view -> {
             Intent intent = new Intent(itemView.getContext(), PlanningPokerActivity.class);
-            intent.putExtra("salon", salon.getId());
+            intent.putExtra("salon", salon.getUid());
             intent.putExtra("scrum", salon.getScrum());
             itemView.getContext().startActivity(intent);
         });

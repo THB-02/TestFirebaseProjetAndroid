@@ -28,9 +28,17 @@ public class GroupManager {
     public Query getAllRooms(){
         return groupRepository.getAllRooms();
     }
-   // public  Query getMyAllRooms(String uid){ return groupRepository.getMyAllRooms(uid);}
+
 
     public void createGroup(String nom){
         groupRepository.createGroup(nom);
     }
+    public Query getLastSalon(){
+        return groupRepository.getLastSalon();
+
+    }
+    public void addScrum (String uidSalon, String uidUSer){
+        groupRepository.addScrum(uidSalon,  uidUSer);
+    }
+
 }

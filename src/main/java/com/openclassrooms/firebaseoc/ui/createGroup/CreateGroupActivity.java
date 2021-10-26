@@ -3,21 +3,33 @@ package com.openclassrooms.firebaseoc.ui.createGroup;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
+
 import androidx.annotation.Nullable;
 
 import com.firebase.ui.auth.ErrorCodes;
 import com.firebase.ui.auth.IdpResponse;
 import com.google.android.material.snackbar.Snackbar;
 
+import com.google.firebase.firestore.EventListener;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
+import com.google.firebase.firestore.SetOptions;
 import com.openclassrooms.firebaseoc.R;
 import com.openclassrooms.firebaseoc.databinding.ActivityCreateGroupBinding;
 import com.openclassrooms.firebaseoc.manager.ChatManager;
 import com.openclassrooms.firebaseoc.manager.GroupManager;
 import com.openclassrooms.firebaseoc.manager.UserManager;
 
+import com.openclassrooms.firebaseoc.models.Salon;
 import com.openclassrooms.firebaseoc.models.User;
 import com.openclassrooms.firebaseoc.ui.BaseActivity;
 import com.openclassrooms.firebaseoc.ui.groups.GroupsActivity;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class CreateGroupActivity extends BaseActivity<ActivityCreateGroupBinding> {
 
@@ -55,12 +67,14 @@ public class CreateGroupActivity extends BaseActivity<ActivityCreateGroupBinding
         if (canCreate){
             // Create a new message for the chat
             groupManager.createGroup(binding.TextCreate.getText().toString());
+
+
             // Reset text field
             binding.TextCreate.setText("");
             showSnackBar("Le salon a été crée !");
         }
         else{
-            showSnackBar("Vous devez dabord entrer un nomde groupe");
+            showSnackBar("Vous devez d'abord entrer un nomde groupe");
         }
     }
 

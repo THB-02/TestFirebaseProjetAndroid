@@ -1,11 +1,13 @@
 package com.openclassrooms.firebaseoc.repository;
 
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
+import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.firestore.SetOptions;
 import com.openclassrooms.firebaseoc.manager.UserManager;
 import com.openclassrooms.firebaseoc.models.Message;
@@ -24,6 +26,7 @@ private static final String SALONS_COLLECTION = "salons";
 
 private static volatile GroupRepository instance;
 private UserManager userManager;
+private Salon salon;
 
 private GroupRepository() { this.userManager = UserManager.getInstance(); }
 
@@ -46,33 +49,39 @@ public CollectionReference getGroupCollection(){
 }
 
 public Query getAllRooms(){
-    return  FirebaseFirestore.getInstance().collection("salons").orderBy("dateCreated", Query.Direction.DESCENDING);
+    return  FirebaseFirestore.getInstance().collection("salons").whereEqualTo("members.uid", userManager.getCurrentUser().getUid()).orderBy("dateCreated", Query.Direction.DESCENDING);
 }
 
-/*public Query getMyAllRooms(String uid){
-    return  FirebaseFirestore
-            .getInstance()
-            .collection("salons")
-            .whereArrayContains(String.valueOf(Arrays.asList("members","scrum")), uid);
-    }*/
 
-// Create User in Firestore
+// Create salon in Firestore
 public void createGroup(String nom) {
     userManager.getUserData().addOnSuccessListener(user -> {
         // Create the Message object
-        /*Map<String, String> member = new HashMap<>();
-        member.put(user.getUsername(), user.getUid().toString());
-        HashMap<String, Map<String, String>> data = new HashMap<>();
-        data.put("members",member);
-*/
-        String uid = user.getUid();
-        Salon salon = new Salon(nom, uid);
+        Map<String, String> members = new HashMap<>();
+        members.put("uid", user.getUid());
+        Salon salon = new Salon(nom,user.getUid());
+        salon.setMembers(members);
 
         this.getGroupCollection().add(salon);
 
-
     });
 
+    }
+
+    public Query getLastSalon(){
+        return FirebaseFirestore.getInstance().collection("salons")
+                .orderBy("dateCreated", Query.Direction.DESCENDING)
+                .limit(1);
+    }
+
+    public void addScrum (String uidSalon, String uidUSer){
+        userManager.getUserData().addOnSuccessListener(user -> {
+
+            FirebaseFirestore.getInstance().collection("salons")
+                    .document(uidSalon).collection("members").document(user.getUid()).set(user);
+
+
+        });
     }
 
 

@@ -37,6 +37,7 @@ public class PlanningPokerRepository {
         // Create the Message object
         US us = new US(enonce);
 
+
         // Store US to Firestore
         FirebaseFirestore.getInstance().collection("salons")
         .document(salon)

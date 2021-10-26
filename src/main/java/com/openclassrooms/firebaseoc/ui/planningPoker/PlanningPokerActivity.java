@@ -91,7 +91,6 @@ public class PlanningPokerActivity extends BaseActivity<ActivityPlanningPokerBin
         planningPokerManager.getLastUS(salon).addSnapshotListener(new EventListener<QuerySnapshot>() {
             @Override
             public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
-                Log.e("test",String.valueOf(value.size()));
                 if(value.size() > 0){
                     for(QueryDocumentSnapshot document : value) {
                         Log.e("test", "2");
