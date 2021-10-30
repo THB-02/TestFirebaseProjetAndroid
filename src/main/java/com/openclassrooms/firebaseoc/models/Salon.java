@@ -85,7 +85,7 @@ public class Salon {
     }
     public void addMembers(User user, String salon){
         Map<String, String> member = new HashMap<>();
-        member.put("uid", user.getUid().toString());
+        member.put(user.getUid().toString(), user.getUid().toString());
         Map<String, Map<String, String>> data = new HashMap<>();
         data.put("members",member);
 

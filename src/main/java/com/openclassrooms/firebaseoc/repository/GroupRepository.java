@@ -49,7 +49,7 @@ public CollectionReference getGroupCollection(){
 }
 
 public Query getAllRooms(){
-    return  FirebaseFirestore.getInstance().collection("salons").whereEqualTo("members.uid", userManager.getCurrentUser().getUid()).orderBy("dateCreated", Query.Direction.DESCENDING);
+    return  FirebaseFirestore.getInstance().collection("salons").whereEqualTo("members."+userManager.getCurrentUser().getUid().toString(), userManager.getCurrentUser().getUid()).orderBy("dateCreated", Query.Direction.DESCENDING);
 }
 
 
@@ -58,7 +58,7 @@ public void createGroup(String nom) {
     userManager.getUserData().addOnSuccessListener(user -> {
         // Create the Message object
         Map<String, String> members = new HashMap<>();
-        members.put("uid", user.getUid());
+        members.put('"'+user.getUid().toString()+'"', user.getUid().toString());
         Salon salon = new Salon(nom,user.getUid());
         salon.setMembers(members);
 
