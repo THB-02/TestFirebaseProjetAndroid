@@ -58,7 +58,7 @@ public void createGroup(String nom) {
     userManager.getUserData().addOnSuccessListener(user -> {
         // Create the Message object
         Map<String, String> members = new HashMap<>();
-        members.put('"'+user.getUid().toString()+'"', user.getUid().toString());
+        members.put(user.getUid().toString(), user.getUid().toString());
         Salon salon = new Salon(nom,user.getUid());
         salon.setMembers(members);
 
