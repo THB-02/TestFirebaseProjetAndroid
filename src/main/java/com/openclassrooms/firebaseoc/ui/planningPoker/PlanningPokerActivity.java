@@ -15,9 +15,13 @@ import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
 
+import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.openclassrooms.firebaseoc.R;
@@ -25,16 +29,20 @@ import com.openclassrooms.firebaseoc.databinding.ActivityPlanningPokerBinding;
 import com.openclassrooms.firebaseoc.manager.GroupManager;
 import com.openclassrooms.firebaseoc.manager.PlanningPokerManager;
 import com.openclassrooms.firebaseoc.manager.UserManager;
+import com.openclassrooms.firebaseoc.models.Note;
 import com.openclassrooms.firebaseoc.models.Salon;
 import com.openclassrooms.firebaseoc.models.US;
 import com.openclassrooms.firebaseoc.models.User;
 import com.openclassrooms.firebaseoc.ui.BaseActivity;
+import com.openclassrooms.firebaseoc.ui.groups.GroupAdapter;
 
 
-public class PlanningPokerActivity extends BaseActivity<ActivityPlanningPokerBinding> {
+public class PlanningPokerActivity extends BaseActivity<ActivityPlanningPokerBinding> implements PlanningPokerAdapter.Listener{
 
     private String salon;
     private String scrum;
+    private PlanningPokerAdapter planningPokerAdapter;
+    private String currentChatName;
 
     private UserManager userManager = UserManager.getInstance();
     private PlanningPokerManager planningPokerManager = PlanningPokerManager.getInstance();
@@ -97,28 +105,34 @@ public class PlanningPokerActivity extends BaseActivity<ActivityPlanningPokerBin
                         Log.e("test", "3");
                         US us = document.toObject(US.class);
                         String idUS = document.getId();
+                        configureRecyclerView(salon, idUS);
                         binding.textUs.setText(us.getEnonce());
 
                         if (us.getNotes().containsKey(username)) {
                             binding.btnNotes.setVisibility(View.GONE);
                             binding.btnModifReponse.setVisibility(View.VISIBLE);
+                            binding.resultNotes.setVisibility(View.VISIBLE);
                             if (scrum.equals(userId)) {
                                 binding.btnUsSuivante.setVisibility(View.VISIBLE);
                             }
                         } else {
                             binding.btnModifReponse.setVisibility(View.GONE);
                             binding.btnNotes.setVisibility(View.VISIBLE);
+                            binding.resultNotes.setVisibility(View.GONE);
                         }
 
                         binding.btnModifReponse.setOnClickListener(view -> {
                             binding.btnModifReponse.setVisibility(View.GONE);
                             binding.btnNotes.setVisibility(View.VISIBLE);
                             binding.btnUsSuivante.setVisibility(View.GONE);
+                            binding.resultNotes.setVisibility(View.GONE);
                         });
 
                         binding.button0.setOnClickListener(view -> {
                             binding.btnNotes.setVisibility(View.GONE);
                             binding.btnModifReponse.setVisibility(View.VISIBLE);
+                            binding.resultNotes.setVisibility(View.VISIBLE);
+
                             planningPokerManager.addNote(username, salon, idUS, "0");
                             if (scrum.equals(userId)) {
                                 binding.btnUsSuivante.setVisibility(View.VISIBLE);
@@ -127,6 +141,7 @@ public class PlanningPokerActivity extends BaseActivity<ActivityPlanningPokerBin
                         binding.button05.setOnClickListener(view -> {
                             binding.btnNotes.setVisibility(View.GONE);
                             binding.btnModifReponse.setVisibility(View.VISIBLE);
+                            binding.resultNotes.setVisibility(View.VISIBLE);
                             planningPokerManager.addNote(username, salon, idUS, "0.5");
                             if (scrum.equals(userId)) {
                                 binding.btnUsSuivante.setVisibility(View.VISIBLE);
@@ -135,6 +150,7 @@ public class PlanningPokerActivity extends BaseActivity<ActivityPlanningPokerBin
                         binding.button1.setOnClickListener(view -> {
                             binding.btnNotes.setVisibility(View.GONE);
                             binding.btnModifReponse.setVisibility(View.VISIBLE);
+                            binding.resultNotes.setVisibility(View.VISIBLE);
                             planningPokerManager.addNote(username, salon, idUS, "1");
                             if (scrum.equals(userId)) {
                                 binding.btnUsSuivante.setVisibility(View.VISIBLE);
@@ -143,6 +159,7 @@ public class PlanningPokerActivity extends BaseActivity<ActivityPlanningPokerBin
                         binding.button2.setOnClickListener(view -> {
                             binding.btnNotes.setVisibility(View.GONE);
                             binding.btnModifReponse.setVisibility(View.VISIBLE);
+                            binding.resultNotes.setVisibility(View.VISIBLE);
                             planningPokerManager.addNote(username, salon, idUS, "2");
                             if (scrum.equals(userId)) {
                                 binding.btnUsSuivante.setVisibility(View.VISIBLE);
@@ -151,6 +168,7 @@ public class PlanningPokerActivity extends BaseActivity<ActivityPlanningPokerBin
                         binding.button3.setOnClickListener(view -> {
                             binding.btnNotes.setVisibility(View.GONE);
                             binding.btnModifReponse.setVisibility(View.VISIBLE);
+                            binding.resultNotes.setVisibility(View.VISIBLE);
                             planningPokerManager.addNote(username, salon, idUS, "3");
                             if (scrum.equals(userId)) {
                                 binding.btnUsSuivante.setVisibility(View.VISIBLE);
@@ -159,6 +177,7 @@ public class PlanningPokerActivity extends BaseActivity<ActivityPlanningPokerBin
                         binding.button5.setOnClickListener(view -> {
                             binding.btnNotes.setVisibility(View.GONE);
                             binding.btnModifReponse.setVisibility(View.VISIBLE);
+                            binding.resultNotes.setVisibility(View.VISIBLE);
                             planningPokerManager.addNote(username, salon, idUS, "5");
                             if (scrum.equals(userId)) {
                                 binding.btnUsSuivante.setVisibility(View.VISIBLE);
@@ -167,6 +186,7 @@ public class PlanningPokerActivity extends BaseActivity<ActivityPlanningPokerBin
                         binding.button8.setOnClickListener(view -> {
                             binding.btnNotes.setVisibility(View.GONE);
                             binding.btnModifReponse.setVisibility(View.VISIBLE);
+                            binding.resultNotes.setVisibility(View.VISIBLE);
                             planningPokerManager.addNote(username, salon, idUS, "8");
                             if (scrum.equals(userId)) {
                                 binding.btnUsSuivante.setVisibility(View.VISIBLE);
@@ -175,6 +195,7 @@ public class PlanningPokerActivity extends BaseActivity<ActivityPlanningPokerBin
                         binding.button13.setOnClickListener(view -> {
                             binding.btnNotes.setVisibility(View.GONE);
                             binding.btnModifReponse.setVisibility(View.VISIBLE);
+                            binding.resultNotes.setVisibility(View.VISIBLE);
                             planningPokerManager.addNote(username, salon, idUS, "13");
                             if (scrum.equals(userId)) {
                                 binding.btnUsSuivante.setVisibility(View.VISIBLE);
@@ -183,6 +204,7 @@ public class PlanningPokerActivity extends BaseActivity<ActivityPlanningPokerBin
                         binding.button20.setOnClickListener(view -> {
                             binding.btnNotes.setVisibility(View.GONE);
                             binding.btnModifReponse.setVisibility(View.VISIBLE);
+                            binding.resultNotes.setVisibility(View.VISIBLE);
                             planningPokerManager.addNote(username, salon, idUS, "20");
                             if (scrum.equals(userId)) {
                                 binding.btnUsSuivante.setVisibility(View.VISIBLE);
@@ -191,6 +213,7 @@ public class PlanningPokerActivity extends BaseActivity<ActivityPlanningPokerBin
                         binding.button40.setOnClickListener(view -> {
                             binding.btnNotes.setVisibility(View.GONE);
                             binding.btnModifReponse.setVisibility(View.VISIBLE);
+                            binding.resultNotes.setVisibility(View.VISIBLE);
                             planningPokerManager.addNote(username, salon, idUS, "40");
                             if (scrum.equals(userId)) {
                                 binding.btnUsSuivante.setVisibility(View.VISIBLE);
@@ -199,6 +222,7 @@ public class PlanningPokerActivity extends BaseActivity<ActivityPlanningPokerBin
                         binding.button100.setOnClickListener(view -> {
                             binding.btnNotes.setVisibility(View.GONE);
                             binding.btnModifReponse.setVisibility(View.VISIBLE);
+                            binding.resultNotes.setVisibility(View.VISIBLE);
                             planningPokerManager.addNote(username, salon, idUS, "100");
                             if (scrum.equals(userId)) {
                                 binding.btnUsSuivante.setVisibility(View.VISIBLE);
@@ -207,6 +231,7 @@ public class PlanningPokerActivity extends BaseActivity<ActivityPlanningPokerBin
                         binding.buttonInterrogation.setOnClickListener(view -> {
                             binding.btnNotes.setVisibility(View.GONE);
                             binding.btnModifReponse.setVisibility(View.VISIBLE);
+                            binding.resultNotes.setVisibility(View.VISIBLE);
                             planningPokerManager.addNote(username, salon, idUS, "?");
                             if (scrum.equals(userId)) {
                                 binding.btnUsSuivante.setVisibility(View.VISIBLE);
@@ -216,13 +241,13 @@ public class PlanningPokerActivity extends BaseActivity<ActivityPlanningPokerBin
                         binding.btnUsSuivante.setOnClickListener(view -> {
                             planningPokerManager.finishUS(salon, idUS, true);
                             binding.messageContainer.setVisibility(View.VISIBLE);
-
                         });
 
                         if (us.isFinished()) {
                             binding.btnNotes.setVisibility(View.GONE);
                             binding.btnModifReponse.setVisibility(View.GONE);
                             binding.btnUsSuivante.setVisibility(View.GONE);
+                            binding.resultNotes.setVisibility(View.GONE);
                             binding.textUs.setText("Le scrum master a fermé les votes.\nEn attente d'une nouvelle US..");
                         } else {
                             binding.messageContainer.setVisibility(View.GONE);
@@ -250,7 +275,9 @@ public class PlanningPokerActivity extends BaseActivity<ActivityPlanningPokerBin
             Log.e("string",String.valueOf(binding.textUs.getText().equals("En attente d'US du scrum master..")));
             binding.btnModifReponse.setVisibility(View.GONE);
             binding.btnNotes.setVisibility(View.GONE);
+            binding.btnVoirNotes.setVisibility(View.GONE);
             binding.btnUsSuivante.setVisibility(View.GONE);
+            binding.resultNotes.setVisibility(View.GONE);
         }
 
         // Send button
@@ -259,6 +286,27 @@ public class PlanningPokerActivity extends BaseActivity<ActivityPlanningPokerBin
         });
 
 
+    }
+
+    // Configure RecyclerView
+    private void configureRecyclerView(String chatName, String idUS) {
+        //Track current chat name
+        this.currentChatName = chatName;
+        //Configure Adapter & RecyclerView
+        this.planningPokerAdapter = new PlanningPokerAdapter(
+                generateOptionsForAdapter(planningPokerManager.getAllNotes(salon,idUS)),
+                this);
+
+        binding.resultNotes.setLayoutManager(new GridLayoutManager(this,3,GridLayoutManager.VERTICAL,false));
+        binding.resultNotes.setAdapter(this.planningPokerAdapter);
+    }
+
+    // Create options for RecyclerView from a Query
+    private FirestoreRecyclerOptions<Note> generateOptionsForAdapter(Query query) {
+        return new FirestoreRecyclerOptions.Builder<Note>()
+                .setQuery(query, Note.class)
+                .setLifecycleOwner(this)
+                .build();
     }
 
     private void sendUS(){
@@ -274,4 +322,8 @@ public class PlanningPokerActivity extends BaseActivity<ActivityPlanningPokerBin
     }
 
 
+    @Override
+    public void onDataChanged() {
+
+    }
 }

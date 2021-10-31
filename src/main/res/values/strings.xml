@@ -71,6 +71,8 @@
     <string name="change_name">Changer de nom</string>
 
     <string name="btnModifReponse">Modifier ma réponse</string>
+    <string name="nbMembres"></string>
+
 
 
 </resources>
