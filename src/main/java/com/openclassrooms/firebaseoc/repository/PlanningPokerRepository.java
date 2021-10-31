@@ -1,7 +1,13 @@
 package com.openclassrooms.firebaseoc.repository;
 
+import androidx.annotation.NonNull;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.firestore.SetOptions;
 import com.openclassrooms.firebaseoc.manager.UserManager;
 import com.openclassrooms.firebaseoc.models.US;
@@ -54,16 +60,58 @@ public class PlanningPokerRepository {
 
 
     public void addNote(String username, String salon, String idUS, String note){
-        Map<String, String> uneNote = new HashMap<>();
-        uneNote.put(username, note);
         Map<String, Map<String, String>> data = new HashMap<>();
-        data.put("notes",uneNote);
+        Map<String,String> uneNote = new HashMap<>();
+        uneNote.put(username,note);
+        data.put("notes", uneNote);
 
         FirebaseFirestore.getInstance().collection("salons")
                 .document(salon)
                 .collection("ListeUS")
                 .document(idUS)
-                .set(data, SetOptions.merge());
+                .set(data,SetOptions.merge());
+
+        FirebaseFirestore.getInstance().collection("salons")
+                .document(salon)
+                .collection("ListeUS")
+                .document(idUS)
+                .collection("notes")
+                .whereEqualTo("autor",username)
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if(task.getResult().size() == 0){
+                            Map<String, String> data = new HashMap<>();
+                            data.put("value",note);
+                            data.put("autor",username);
+
+                            FirebaseFirestore.getInstance().collection("salons")
+                                    .document(salon)
+                                    .collection("ListeUS")
+                                    .document(idUS)
+                                    .collection("notes")
+                                    .add(data);
+                        }
+                        else{
+                            String idNote= "";
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                idNote = document.getId();
+                            }
+                            Map<String, String> data = new HashMap<>();
+                            data.put("value",note);
+
+                            FirebaseFirestore.getInstance().collection("salons")
+                                    .document(salon)
+                                    .collection("ListeUS")
+                                    .document(idUS)
+                                    .collection("notes")
+                                    .document(idNote)
+                                    .set(data,SetOptions.merge());
+                        }
+
+                    }
+                });
     }
 
     public void finishUS(String salon, String idUS, boolean finished){
@@ -78,4 +126,11 @@ public class PlanningPokerRepository {
    }
 
 
+   public Query getAllNotes(String salon, String idUS){
+        return FirebaseFirestore.getInstance().collection("salons")
+               .document(salon)
+               .collection("ListeUS")
+               .document(idUS)
+               .collection("notes");
+   }
 }

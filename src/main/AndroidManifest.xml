@@ -5,7 +5,7 @@
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_logo_fire"
-        android:label="Planning Poto"
+        android:label="Scrum Poker"
         android:roundIcon="@mipmap/ic_logo_fire"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">

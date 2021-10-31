@@ -1,5 +1,6 @@
 package com.openclassrooms.firebaseoc.manager;
 
+import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 import com.openclassrooms.firebaseoc.models.US;
 import com.openclassrooms.firebaseoc.repository.ChatRepository;
@@ -41,6 +42,10 @@ public class PlanningPokerManager {
 
     public void finishUS(String salon, String idUS, boolean finished){
         planningPokerRepository.finishUS(salon, idUS, finished);
+    }
+
+    public Query getAllNotes(String salon, String idUS){
+        return planningPokerRepository.getAllNotes(salon, idUS);
     }
 
 }

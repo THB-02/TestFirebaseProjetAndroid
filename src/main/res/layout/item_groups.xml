@@ -18,7 +18,9 @@
         android:layout_weight="1"
         android:background="@drawable/ic_item_group"
         android:orientation="vertical"
-        tools:layout_editor_absoluteX="178dp">
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="0dp">
 
         <TextView
             android:id="@+id/messageTextView"
@@ -39,7 +41,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="right"
-            android:text="TextView" />
+            android:text="@string/nbMembres" />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
