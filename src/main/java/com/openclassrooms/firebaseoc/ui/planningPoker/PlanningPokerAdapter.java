@@ -37,7 +37,7 @@ public class PlanningPokerAdapter extends FirestoreRecyclerAdapter<Note, Plannin
     @Override
     public PlanningPokerViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         return new PlanningPokerViewHolder(LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.item_groups, parent, false));
+                .inflate(R.layout.item_notes, parent, false));
     }
 
     @Override

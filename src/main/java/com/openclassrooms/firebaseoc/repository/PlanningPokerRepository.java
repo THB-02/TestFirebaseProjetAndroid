@@ -1,9 +1,13 @@
 package com.openclassrooms.firebaseoc.repository;
 
+import android.util.Log;
+
 import androidx.annotation.NonNull;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
@@ -38,19 +42,18 @@ public class PlanningPokerRepository {
         }
     }
 
-    public void createUS(String enonce, String salon){
+    public void createUS(String enonce, String salon) {
 
         // Create the Message object
         US us = new US(enonce);
 
-
         // Store US to Firestore
         FirebaseFirestore.getInstance().collection("salons")
-        .document(salon)
-        .collection("ListeUS")
-        .add(us);
-    }
+                .document(salon)
+                .collection("ListeUS")
+                .add(us);
 
+    }
     public Query getLastUS(String salon){
         return FirebaseFirestore.getInstance().collection("salons")
                 .document(salon)

@@ -17,6 +17,7 @@ import com.openclassrooms.firebaseoc.models.User;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -61,6 +62,9 @@ public void createGroup(String nom) {
         members.put(user.getUid().toString(), user.getUid().toString());
         Salon salon = new Salon(nom,user.getUid());
         salon.setMembers(members);
+        Date date = new Date();
+        long time = date.getTime();
+        salon.setTime(time);
 
         this.getGroupCollection().add(salon);
 

@@ -2,6 +2,8 @@ package com.openclassrooms.firebaseoc.ui.addGroup;
 
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
+
 import com.google.android.material.snackbar.Snackbar;
 import androidx.annotation.Nullable;
 import com.openclassrooms.firebaseoc.databinding.ActivityAddGroupBinding;
@@ -10,6 +12,8 @@ import com.openclassrooms.firebaseoc.manager.UserManager;
 import com.openclassrooms.firebaseoc.models.Salon;
 import com.openclassrooms.firebaseoc.models.User;
 import com.openclassrooms.firebaseoc.ui.BaseActivity;
+
+import java.util.Date;
 
 
 public class AddGroupActivity extends BaseActivity<ActivityAddGroupBinding> {

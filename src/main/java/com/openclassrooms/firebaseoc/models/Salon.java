@@ -2,6 +2,8 @@ package com.openclassrooms.firebaseoc.models;
 
 
 
+import android.util.Log;
+
 import androidx.annotation.NonNull;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -21,6 +23,7 @@ public class Salon {
     private String scrum;
     private String uid;
     private Date dateCreated;
+    private long time;
     private Map<String, String> members = new HashMap<>();
 
     public Salon() { }
@@ -41,6 +44,7 @@ public class Salon {
 
 
     // --- GETTERS ---
+    public long getTime() {return time;}
     public String getNom() { return nom; }
     public String getUid() { return uid; }
     public String getScrum(){
@@ -63,7 +67,8 @@ public class Salon {
         this.nom = nom;
         getDocumentId();
     }
-    
+
+    public void setTime(long time) {this.time = time;}
     public void setUid(String uid) { this.uid = uid; }
     public void setScrum(String scrum){
         this.scrum = scrum;
@@ -72,7 +77,7 @@ public class Salon {
 
     public void getDocumentId() {
         FirebaseFirestore.getInstance().collection("salons")
-                .whereEqualTo("nom", getNom())
+                .whereEqualTo("time", getTime())
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
