@@ -3,6 +3,7 @@ package com.openclassrooms.firebaseoc.ui.planningPoker;
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
@@ -34,7 +35,9 @@ import com.openclassrooms.firebaseoc.models.Salon;
 import com.openclassrooms.firebaseoc.models.US;
 import com.openclassrooms.firebaseoc.models.User;
 import com.openclassrooms.firebaseoc.ui.BaseActivity;
+import com.openclassrooms.firebaseoc.ui.addGroup.AddGroupActivity;
 import com.openclassrooms.firebaseoc.ui.groups.GroupAdapter;
+import com.openclassrooms.firebaseoc.ui.usSummary.UsSummaryActivity;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -46,7 +49,7 @@ public class PlanningPokerActivity extends BaseActivity<ActivityPlanningPokerBin
     private String scrum;
     private PlanningPokerAdapter planningPokerAdapter;
     private String currentChatName;
-
+    private String noteFinal;
     private UserManager userManager = UserManager.getInstance();
     private PlanningPokerManager planningPokerManager = PlanningPokerManager.getInstance();
     private GroupManager groupManager = GroupManager.getInstance();
@@ -91,6 +94,11 @@ public class PlanningPokerActivity extends BaseActivity<ActivityPlanningPokerBin
 
             return true;
         }
+        if(item.getItemId()==R.id.list_us){
+            UsSummaryActivity();
+
+            return true;
+        }
         return super.onOptionsItemSelected(item);
     }
 
@@ -120,8 +128,10 @@ public class PlanningPokerActivity extends BaseActivity<ActivityPlanningPokerBin
                                 Log.e("notes identiques",String.valueOf(count));
                                 Log.e("notes identiques",String.valueOf(us.getNotes().size()==count));
                                 if (scrum.equals(userId)) {
+
                                     if(us.getNotes().size()==count){
                                         binding.btnUsSuivante.setVisibility(View.VISIBLE);
+
                                     }
                                     else{
                                         binding.btnUsSuivante.setVisibility(View.GONE);
@@ -152,79 +162,99 @@ public class PlanningPokerActivity extends BaseActivity<ActivityPlanningPokerBin
                                 binding.btnNotes.setVisibility(View.GONE);
                                 binding.btnModifReponse.setVisibility(View.VISIBLE);
                                 binding.resultNotes.setVisibility(View.VISIBLE);
-
+                                noteFinal= "0";
                                 planningPokerManager.addNote(username, salon, idUS, "0");
                             });
                             binding.button05.setOnClickListener(view -> {
                                 binding.btnNotes.setVisibility(View.GONE);
                                 binding.btnModifReponse.setVisibility(View.VISIBLE);
                                 binding.resultNotes.setVisibility(View.VISIBLE);
+                                noteFinal= "0.5";
                                 planningPokerManager.addNote(username, salon, idUS, "0.5");
                             });
                             binding.button1.setOnClickListener(view -> {
                                 binding.btnNotes.setVisibility(View.GONE);
                                 binding.btnModifReponse.setVisibility(View.VISIBLE);
                                 binding.resultNotes.setVisibility(View.VISIBLE);
+                                noteFinal= "1";
                                 planningPokerManager.addNote(username, salon, idUS, "1");
+
                             });
                             binding.button2.setOnClickListener(view -> {
                                 binding.btnNotes.setVisibility(View.GONE);
                                 binding.btnModifReponse.setVisibility(View.VISIBLE);
                                 binding.resultNotes.setVisibility(View.VISIBLE);
+                                noteFinal= "2";
                                 planningPokerManager.addNote(username, salon, idUS, "2");
+
                             });
                             binding.button3.setOnClickListener(view -> {
                                 binding.btnNotes.setVisibility(View.GONE);
                                 binding.btnModifReponse.setVisibility(View.VISIBLE);
                                 binding.resultNotes.setVisibility(View.VISIBLE);
+                                noteFinal= "3";
                                 planningPokerManager.addNote(username, salon, idUS, "3");
+
                             });
                             binding.button5.setOnClickListener(view -> {
                                 binding.btnNotes.setVisibility(View.GONE);
                                 binding.btnModifReponse.setVisibility(View.VISIBLE);
                                 binding.resultNotes.setVisibility(View.VISIBLE);
+                                noteFinal= "5";
                                 planningPokerManager.addNote(username, salon, idUS, "5");
+
                             });
                             binding.button8.setOnClickListener(view -> {
                                 binding.btnNotes.setVisibility(View.GONE);
                                 binding.btnModifReponse.setVisibility(View.VISIBLE);
                                 binding.resultNotes.setVisibility(View.VISIBLE);
+                                noteFinal= "8";
                                 planningPokerManager.addNote(username, salon, idUS, "8");
+
                             });
                             binding.button13.setOnClickListener(view -> {
                                 binding.btnNotes.setVisibility(View.GONE);
                                 binding.btnModifReponse.setVisibility(View.VISIBLE);
                                 binding.resultNotes.setVisibility(View.VISIBLE);
+                                noteFinal= "13";
                                 planningPokerManager.addNote(username, salon, idUS, "13");
+
                             });
                             binding.button20.setOnClickListener(view -> {
                                 binding.btnNotes.setVisibility(View.GONE);
                                 binding.btnModifReponse.setVisibility(View.VISIBLE);
                                 binding.resultNotes.setVisibility(View.VISIBLE);
+                                noteFinal= "20";
                                 planningPokerManager.addNote(username, salon, idUS, "20");
+
                             });
                             binding.button40.setOnClickListener(view -> {
                                 binding.btnNotes.setVisibility(View.GONE);
                                 binding.btnModifReponse.setVisibility(View.VISIBLE);
                                 binding.resultNotes.setVisibility(View.VISIBLE);
+                                noteFinal= "40";
                                 planningPokerManager.addNote(username, salon, idUS, "40");
                             });
                             binding.button100.setOnClickListener(view -> {
                                 binding.btnNotes.setVisibility(View.GONE);
                                 binding.btnModifReponse.setVisibility(View.VISIBLE);
                                 binding.resultNotes.setVisibility(View.VISIBLE);
+                                noteFinal= "100";
                                 planningPokerManager.addNote(username, salon, idUS, "100");
+
                             });
                             binding.buttonInterrogation.setOnClickListener(view -> {
                                 binding.btnNotes.setVisibility(View.GONE);
                                 binding.btnModifReponse.setVisibility(View.VISIBLE);
                                 binding.resultNotes.setVisibility(View.VISIBLE);
+                                noteFinal= "?";
                                 planningPokerManager.addNote(username, salon, idUS, "?");
                             });
 
                             binding.btnUsSuivante.setOnClickListener(view -> {
                                 planningPokerManager.finishUS(salon, idUS, true);
                                 binding.messageContainer.setVisibility(View.VISIBLE);
+                                planningPokerManager.addNoteFinal(salon, idUS, noteFinal);
                             });
 
                             if (us.isFinished()) {
@@ -313,5 +343,10 @@ public class PlanningPokerActivity extends BaseActivity<ActivityPlanningPokerBin
     @Override
     public void onDataChanged() {
 
+    }
+    private void UsSummaryActivity() {
+        Intent intent = new Intent(this, UsSummaryActivity.class);
+        intent.putExtra("salon",salon);
+        startActivity(intent);
     }
 }

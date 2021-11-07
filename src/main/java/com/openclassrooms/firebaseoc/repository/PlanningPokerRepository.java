@@ -117,6 +117,19 @@ public class PlanningPokerRepository {
                     }
                 });
     }
+    public void addNoteFinal( String salon, String idUS, String note){
+        Map<String,String> uneNote = new HashMap<>();
+        uneNote.put("noteFinal",note);
+
+        FirebaseFirestore.getInstance().collection("salons")
+                .document(salon)
+                .collection("ListeUS")
+                .document(idUS)
+                .set(uneNote,SetOptions.merge());
+
+
+    }
+
 
     public void finishUS(String salon, String idUS, boolean finished){
         Map<String, Boolean> data = new HashMap<>();
@@ -137,4 +150,10 @@ public class PlanningPokerRepository {
                .document(idUS)
                .collection("notes");
    }
+
+    public Query getAllUS(String salon){
+        return FirebaseFirestore.getInstance().collection("salons")
+                .document(salon)
+                .collection("ListeUS");
+    }
 }

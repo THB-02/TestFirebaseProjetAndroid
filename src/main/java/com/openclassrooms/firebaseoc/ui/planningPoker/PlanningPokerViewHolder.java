@@ -1,16 +1,10 @@
 package com.openclassrooms.firebaseoc.ui.planningPoker;
 
-import android.content.Intent;
 import android.view.View;
-
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
-import com.openclassrooms.firebaseoc.R;
-import com.openclassrooms.firebaseoc.databinding.ItemGroupsBinding;
 import com.openclassrooms.firebaseoc.databinding.ItemNotesBinding;
 import com.openclassrooms.firebaseoc.models.Note;
-import com.openclassrooms.firebaseoc.models.Salon;
 
 public class PlanningPokerViewHolder extends RecyclerView.ViewHolder {
 

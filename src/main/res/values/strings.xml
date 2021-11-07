@@ -72,7 +72,9 @@
 
     <string name="btnModifReponse">Modifier ma réponse</string>
     <string name="nbMembres"></string>
-
+    <string name="TextColonneUS">Nom de l\'US</string>
+    <string name="TextColonneNote">Note</string>
+    <string name="text_list_us">Récapitulatif</string>
 
 
 </resources>

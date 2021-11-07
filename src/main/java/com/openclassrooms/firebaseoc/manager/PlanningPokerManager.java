@@ -39,6 +39,9 @@ public class PlanningPokerManager {
     public void addNote(String username, String salon, String idUS, String note){
         planningPokerRepository.addNote(username,salon, idUS, note);
     }
+    public void addNoteFinal( String salon, String idUS, String note){
+        planningPokerRepository.addNoteFinal(salon, idUS, note);
+    }
 
     public void finishUS(String salon, String idUS, boolean finished){
         planningPokerRepository.finishUS(salon, idUS, finished);
@@ -46,6 +49,9 @@ public class PlanningPokerManager {
 
     public Query getAllNotes(String salon, String idUS){
         return planningPokerRepository.getAllNotes(salon, idUS);
+    }
+    public Query getAllUs(String salon){
+        return planningPokerRepository.getAllUS(salon);
     }
 
 }

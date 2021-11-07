@@ -12,6 +12,7 @@ public class US {
     private Date dateCreated;
     private HashMap<String, String> notes = new HashMap<String, String>();
     private boolean finished;
+    private String noteFinal;
 
     public US(){
         this.finished = false;
@@ -20,6 +21,10 @@ public class US {
     public US(String enonce){
         this.enonce = enonce;
     }
+    public US(String enonce, String noteFinal){
+        this.enonce= enonce;
+        this.noteFinal = noteFinal;}
+
 
     public String getId() {
         return id;
@@ -33,6 +38,9 @@ public class US {
         return enonce;
     }
     public boolean isFinished() { return finished; }
+
+    public String getNoteFinal() { return noteFinal; }
+    public void setNoteFinal(String noteFinal) { this.noteFinal = noteFinal; }
 
     public void setEnonce(String enonce) {
         this.enonce = enonce;
