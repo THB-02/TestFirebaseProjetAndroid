@@ -7,7 +7,7 @@
     <LinearLayout
         android:id="@+id/layoutitem"
         android:layout_width="match_parent"
-        android:layout_height="80dp"
+        android:layout_height="50dp"
         android:background="@drawable/round_rectangle_blue"
         android:gravity="center_vertical"
         app:layout_constraintEnd_toEndOf="parent"
